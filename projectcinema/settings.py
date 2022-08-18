@@ -29,7 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '0.0.0.0',
     'cinemaniavideo.herokuapp.com',
-    'primecinema.herokuapp.com'
+    'primecinema.herokuapp.com',
+    '127.0.0.1'
 ]
 
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Primecinema'
 ]
 
 MIDDLEWARE = [
@@ -59,7 +61,7 @@ ROOT_URLCONF = 'projectcinema.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

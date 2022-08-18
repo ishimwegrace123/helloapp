@@ -1,0 +1,346 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with JohnDoe landing page.">
+    <meta name="author" content="Devcrud">
+    <title>cinemania</title>
+    
+    <link rel="stylesheet" href="{% static 'Cinema_app/assets/vendors/themify-icons/css/themify-icons.css' %}">
+  
+	<link rel="stylesheet" href="{% static 'Cinema_app/assets/css/johndoe.css' %}">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+       <header class="header">
+        <div class="container">
+            <ul class="social-icons pt-3">
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
+            </ul>  
+            <div class="header-content">
+    
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <h6 class="header-mono" >{{ message }}</h6>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {% endfor %}
+            
+            
+                <h3>Welcome to Cinemania...</h3>
+            
+            
+                {% if user.is_authenticated %}
+                <h4 class="header-subtitle" >Hello, {{ user.username }}</h4>
+                <h6 class="header-mono" >Enjoy exclusive Cinemania Originals as well as popular movies and TV shows. Join Cinemania now by signUp.</h6>
+               <!--  <button class="button" ><a href="/signout">SignOut</a></button> -->
+                {% else %}
+                <button type="submit" class="btn bg-primary w-lg"><a href="/signup" style="color:black">SignUp</a></button>
+                <button type="submit" class="btn bg-primary w-lg" ><a href="/signin" style="color:black">SignIn</a></button>
+                {% endif %}
+            
+                <script src="" async defer></script>
+            
+            
+
+               <!--  <button class="btn btn-primary btn-rounded"><i class="ti-printer pr-2"></i>Print Resume</button> -->
+            </div>
+        </div>
+    </header>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
+        <div class="container">
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="#upload" class="nav-link">Add Movie</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">Movies</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav brand">
+                    <img src="{% static 'Cinema_app/assets/imgs/avatar.jpg' %}" alt="" class="brand-img">
+                    <li class="brand-txt">
+                        {% if user.is_authenticated %}
+                        <h5 class="brand-title">{{ user.username }}</h5>
+                        <div class="brand-subtitle">Welcome back to cinemania</div>
+                        {% else %}
+                        
+                        <strong class="brand-title"><a href="/signin">SignIn</a></strong>
+                        <div class="brand-subtitle"><a href="/signup">create an account</a></div>
+                        
+                        {% endif %}
+
+
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#resume" class="nav-link">Categorized</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#blog" class="nav-link">Latest Movie</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="/signout" class="nav-link">SignOut</a>
+                    </li>
+                    {% endif %}
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!-- adding fov movies  -->
+
+
+{% if user.is_authenticated %}
+
+<div class="container-fluid">
+    <div id="upload" class="row about-section">
+
+        <div class="col-lg-4 about-card">
+            <h3 class="font-weight-light">Personal Profile</h3>
+            <span class="line mb-5"></span>
+            <ul class="mt40 info list-unstyled">
+                
+                <li><span>FirstName:</span>&nbsp; <strong >{{ user.first_name}}</strong></li><br>
+               <li><span>SurtName:</span>&nbsp; <strong>{{ user.last_name }}</strong></li><br>
+
+                <!-- <li><span>Birthdate:</span> </li><br> -->
+                <li><span>Email:</span>&nbsp;<strong>{{ user.email }}</strong></li><br>
+                <!-- <li><span>Phone:</span>  </li><br>
+                <li><span>Address></span>   </li><br> -->
+                
+            </ul>
+        
+            
+        </div>
+
+
+        <div class="col-lg-4 about-card">
+            <h3 class="font-weight-light">Upload favorite Movie</h3>
+            
+            <span class="line mb-5"></span>
+            <form method="post" enctype="multipart/form-data"> 
+                {% csrf_token %}
+                   
+            <h5 class="mb-3">Image:</h5>
+            <p class="mt-20"><input type="file" required name="image"> </p>
+               
+                <label class="title">Title:</label><br>
+                <input type="text" required name="title" id="title" placeholder="Enter Movie title"><br>
+                <!-- <label class="release_date">Release date:</label><br>
+                <input type="date" required name="release_date" id="release_date"><br> -->
+                <label class="main_actors">Main actors:</label><br>
+                <textarea id="main_actors" name="main_actors" rows="4" cols="50" placeholder="Enter Main actors"></textarea><br>
+    
+                <label class="genre">Genre:</label>
+                <select required name="genre" id="genre">
+                    <option>Action</option>
+                    <option>Comedy</option>
+                    <option>Horror</option>
+                    <option>Love Story</option>
+                    <option>documentery</option>
+                </select><br>
+                <label class="author">Author:</label><br>
+                <input type="text"  name="author" id="author" placeholder="Enter Author.."><br><br>
+               <input type="submit" value="upload">
+            </form>
+            {% for obj in mov %}
+            {% if forloop.last %}
+            <br><br>
+               <h6 >Succesfully uploaded - <i style="color: green;"> {{obj.title}}</i></h6>
+               <!-- <img src="{{x.image.url}}" alt="image" class="img-thumbnail" > -->
+               {% endif %}
+               {% endfor %}
+           
+           
+        </div>
+
+        <div class="col-lg-4 about-card">
+            <h3 class="font-weight-light">My Latest Uploaded</h3>
+            <span class="line mb-5"></span>
+            {% for obj in mov %}
+            {% if forloop.last %}
+           
+            <img src="{{obj.image.url}}" height="70%" width="70%" class="img-thumbnail" alt="...">
+            <div class="row">
+                <div class="col-10 ml-auto mr-3">
+                    <p class="subtitle"><strong>Movie Title:&nbsp;&nbsp;</strong> {{obj.title}}</p>
+                    <p class="subtitle"><strong>Main actors:&nbsp;&nbsp;</strong>  {{obj.main_actors}}</p>
+                     <p class="subtitle"><strong>Genre:&nbsp;&nbsp;</strong> {{obj.genre}}</p>
+                    <p class="subtitle"><strong>Author:&nbsp;&nbsp;</strong> {{obj.author}}</p>
+                    <hr>
+                </div>
+            </div> {% endif %}
+            <!-- {% if forloop.counter|divisibleby:3 %}
+            {% endif %}
+            {% if forloop.first %}{% endif %} -->
+          
+           {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- end fov movies -->
+<br><br><br>
+
+    <!--Resume Section-->
+    <section class="section" id="about">
+        <div class="container">
+            
+            <h2 class="mb-5"><span class="text-danger">Fav Movies</span> Released</h2>
+             <div class="row">
+           {% for obj in mov %}  
+           
+                <div class="col-md-6 col-lg-4">
+                    
+                    <div class="card">
+                       <div class="card-header">
+                            <div class="mt-2">
+                                
+                                <h6><strong>Movie Title:&nbsp;&nbsp;</strong> {{obj.title}}</h6>
+                                <span class="line"></span>  
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <img src="{{obj.image.url}}" height="70%" width="70%" class="img-thumbnail" alt="...">
+                            <P></P>
+                            <P class="subtitle"><strong>Main actors:&nbsp;&nbsp;</strong>  {{obj.main_actors}}</P>
+                            <P class="subtitle"><strong>Genre:&nbsp;&nbsp;</strong> {{obj.genre}}</P>
+                            <P class="subtitle"><strong>Author:&nbsp;&nbsp;</strong> {{obj.author}}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+         
+            {% endfor %}
+        </div>
+        </div>
+    </section>
+
+    <section class="section bg-dark text-center">
+        <div class="container">
+            
+        </div>
+    </section>
+
+    <section class="section" id="resume">
+            <div class="container">
+                <h2 class="mb-5 pb-4"><span class="text-danger">Movie</span>Categorized</h2>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card mb-5">
+                           <div class="card-header has-icon">
+                                <i class="ti-vector text-danger" aria-hidden="true"></i>
+                            </div>
+                            <div class="card-body px-4 py-3">
+                                <h5 class="mb-3 card-title text-dark">Action</h5>
+                                <P class="subtitle"></P>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card mb-5">
+                           <div class="card-header has-icon">
+                                <i class="ti-write text-danger" aria-hidden="true"></i>
+                            </div>
+                            <div class="card-body px-4 py-3">
+                                <h5 class="mb-3 card-title text-dark">Horror</h5>
+                                <P class="subtitle"></P>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card mb-5">
+                           <div class="card-header has-icon">
+                                <i class="ti-package text-danger" aria-hidden="true"></i>
+                            </div>
+                            <div class="card-body px-4 py-3">
+                                <h5 class="mb-3 card-title text-dark">Comedy</h5>
+                                <P class="subtitle"></P>
+                            </div>
+                        </div>
+                    </div>
+                    
+    </section>
+
+
+    <section class="section" id="blog">
+        <div class="container">
+            <h2 class="mb-5">Latest <span class="text-danger">Movies</span></h2>
+            <div class="row">
+                
+                {% for obj in mov %}
+                
+                <div class="blog-card">
+                    <div class="img-holder">
+                        <img src="{{obj.image.url}}" height="70%" width="70%" class="img-thumbnail" alt="...">
+                    </div>
+                    <div class="content-holder">
+                        <h6 class="title"><strong>Movie Title  &nbsp;&nbsp;</strong><i style="color: green;">{{obj.title}}</i> </h6>
+
+                        <p class="post-details">
+                            <a href="#">By:  {{obj.author}}</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 234</a>
+                            <a href="#"><i class="ti-comment"></i> 123</a>
+                        </p>
+                        
+                        <p><strong>Genre:&nbsp;&nbsp;</strong> {{obj.genre}}</p>
+
+                        <p><b>Actors and Actress professionary acted on the stage.</b></p>
+                        <p><strong>Main actors:&nbsp;&nbsp;</strong>  {{obj.main_actors}}</p>
+
+                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
+                    </div>
+                </div>
+                
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+ 
+    <footer class="footer py-3">
+        <div class="container">
+            <p class="small mb-0 text-light">
+                &copy; <script>document.write(new Date().getFullYear())</script> Created With <i class="ti-heart text-danger"></i> By <a href="http://devcrud.com" target="_blank"><span class="text-danger" title="Bootstrap 4 Themes and Dashboards">DevCRUD</span></a> 
+            </p>
+        </div>
+    </footer>
+
+	<!-- core  -->
+    <script src="{% static 'Cinema_app/assets/vendors/jquery/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'Cinema_app/assets/vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="{% static 'Cinema_app/assets/vendors/bootstrap/bootstrap.affix.js' %}"></script>
+
+    <!-- Isotope  -->
+    <script src="{% static 'Cinema_app/assets/vendors/isotope/isotope.pkgd.js' %}"></script>
+    
+    <!-- Google mpas -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+
+    <!-- JohnDoe js -->
+    <script src="{% static 'Cinema_app/assets/js/johndoe.js' %}"></script>
+
+</body>
+</html>

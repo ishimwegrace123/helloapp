@@ -1,0 +1,102 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with JohnDoe landing page.">
+    <meta name="author" content="Devcrud">
+    <title>cinemania</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="{% static 'Cinema_app/assets/vendors/themify-icons/css/themify-icons.css' %}">
+    <!-- Bootstrap + JohnDoe main styles -->
+	<link rel="stylesheet" href="{% static 'Cinema_app/assets/css/johndoe.css' %}">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+       <header class="header">
+        <div class="container">
+            <ul class="social-icons pt-3">
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
+            </ul>  
+            <div class="header-content">
+    
+                <form action="/signin" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <section class="sign-in">
+                            <div class="container">
+                                <div class="signin-content">
+                                    <div class="signin-image">
+                                        <!-- <figure><img src="{% static 'Cinema_app/images/signin.jpg' %}" alt="sing up image"></figure> -->
+                                               
+                                    </div>
+                
+                                    <div class="signin-form">
+                                        <h2 class="form-title">Sign in</h2>
+                                        <form method="POST" class="register-form" id="login-form">
+                                            <table>
+                                            <tr><td>
+                                                <label for="usern"><i class="zmdi zmdi-account material-icons-name" required="required">UserName:</i></label></td><td>
+                                                <input type="text" name="usern" id="usern" placeholder="Enter UserName" required="required">
+                                            </tr></td>
+                                            <tr><td>
+                                                <label for="password"><i class="zmdi zmdi-lock">Password:</i></label></td><td>
+                                                <input type="password" name="password" id="password" placeholder="Enter Password"/>
+                                                </td></tr>
+                                                </table>
+                                                <br>
+                                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label><br>
+                                            
+                                                <input type="submit" name="signin" id="signin"  class="btn bg-primary w-lg" style="color:black" value="SignIn"/><br><br><br>
+                                                
+                                            <tr><td>
+                                            <a href="/signup" class="signup-image-link">Create an account</a>
+                                        </form>
+
+                                        <br>
+                                        <br>
+                                        <br>  <!--  <button class="btn btn-primary btn-rounded"><i class="ti-printer pr-2"></i>Print Resume</button> -->
+            
+                                    </form>                       
+        </div>
+    </header>
+
+
+    <footer class="footer py-3">
+        <div class="container">
+            <p class="small mb-0 text-light">
+                &copy; <script>document.write(new Date().getFullYear())</script> Created With <i class="ti-heart text-danger"></i> By @fuse<span class="text-danger" title="Bootstrap 4 Themes and Dashboards">DevCRUD</span></a> 
+            </p>
+        </div>
+    </footer>
+
+	<!-- core  -->
+    <script src="{% static 'Cinema_app/assets/vendors/jquery/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'Cinema_app/assets/vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="{% static 'Cinema_app/assets/vendors/bootstrap/bootstrap.affix.js' %}"></script>
+
+    <!-- Isotope  -->
+    <script src="{% static 'Cinema_app/assets/vendors/isotope/isotope.pkgd.js' %}"></script>
+    
+    <!-- Google mpas -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+
+    <!-- JohnDoe js -->
+    <script src="{% static 'Cinema_app/assets/js/johndoe.js' %}"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,118 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with JohnDoe landing page.">
+    <meta name="author" content="Devcrud">
+    <title>cinemania</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="{% static 'Cinema_app/assets/vendors/themify-icons/css/themify-icons.css' %}">
+    <!-- Bootstrap + JohnDoe main styles -->
+	<link rel="stylesheet" href="{% static 'Cinema_app/assets/css/johndoe.css' %}">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+       <header class="header">
+        <div class="container">
+            <ul class="social-icons pt-3">
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
+            </ul>  
+            <div class="header-content">
+    <br>
+    <br>
+    <br>
+    <br>
+                <form action="/signup" method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+                    <div class="main">
+                
+                        <!-- Sign up form -->
+                        <section class="signup">
+                            <div class="container">
+                                <div class="signup-content">
+                                    <div class="signup-form">
+                                        <h2 class="form-title">Sign up</h2>
+                                       
+                                            <table>
+                                            <tr><td>
+                                                <label for="username"><i class="zmdi zmdi-account material-icons-name">UserName:</i></label></td><td>
+                                                <input type="text" name="username" id="username" placeholder="UserName" required="required"/></td></tr>
+                                     
+                                            <tr><td>
+                                                <label for="fname"><i class="zmdi zmdi-account material-icons-name">FirstName:</i></label></td><td>
+                                                <input type="text" name="fname" id="fname" placeholder="Your FirstName"  required="required"/></td></tr>
+                                            
+                                            <tr><td>
+                                                <label for="lname"><i class="zmdi zmdi-account material-icons-name">LastName:</i></label></td><td>
+                                                <input type="text" name="lname" id="lname" placeholder="Your LastName"  required="required"/></td></tr>
+                                            
+                                            <tr><td>
+                                                <label for="email"><i class="zmdi zmdi-email">Email:</i></label></td><td>
+                                                <input type="email" name="email" id="email" placeholder="Your Email"  required="required"/></td></tr>
+                                            
+                                            <tr><td>
+                                                <label for="pass1"><i class="zmdi zmdi-lock">Password:</i></label></td><td>
+                                                <input type="password" name="pass1" id="pass1" placeholder="Password"  required="required"/></td></tr>
+                                            
+                                            <tr><td>
+                                                <label for="pass2"><i class="zmdi zmdi-lock-outline">Repeat Password:</i></label></td><td>
+                                                <input type="password" name="pass2" id="pass2" placeholder="Repeat your password"  required="required"/></td></tr>
+                                            </table>
+                                            
+                                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                                            
+                                            
+                                               <br> 
+                                                <input type="submit" name="signup" id="signup"  class="btn bg-primary w-lg" " style="color:black" value="Register"/>
+
+                                           
+                                        </form>
+                                    </div>
+                                        <a href="/signin" class="signup-image-link">I am already member</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                    </form>
+                                        <br>
+                                        <br>
+                                        <br>  
+            </div>
+        </div>
+    </header>
+
+
+    <footer class="footer py-3">
+        <div class="container">
+            <p class="small mb-0 text-light">
+                &copy; <script>document.write(new Date().getFullYear())</script> Created With <i class="ti-heart text-danger"></i> By <a href="http://devcrud.com" target="_blank"><span class="text-danger" title="Bootstrap 4 Themes and Dashboards">DevCRUD</span></a> 
+            </p>
+        </div>
+    </footer>
+
+	<!-- core  -->
+    <script src="{% static 'Cinema_app/assets/vendors/jquery/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'Cinema_app/assets/vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="{% static 'Cinema_app/assets/vendors/bootstrap/bootstrap.affix.js' %}"></script>
+
+    <!-- Isotope  -->
+    <script src="{% static 'Cinema_app/assets/vendors/isotope/isotope.pkgd.js' %}"></script>
+    
+    <!-- Google mpas -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+
+    <!-- JohnDoe js -->
+    <script src="{% static 'Cinema_app/assets/js/johndoe.js' %}"></script>
+
+</body>
+</html>
