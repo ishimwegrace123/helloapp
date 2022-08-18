@@ -28,7 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '0.0.0.0',
-    'cinemaniavideo.herokuapp.com'
+    'cinemaniavideo.herokuapp.com',
+    'primecinema.herokuapp.com'
 ]
 
 
